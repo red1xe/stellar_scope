@@ -7,7 +7,7 @@ class PlanetInfoApi {
     final response = await http.get(
       Uri.parse("https://api.le-systeme-solaire.net/rest/bodies/$q"),
     );
-    print("Response status: ${response.statusCode}");
+    print("Planet Info API Response status: ${response.statusCode}");
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = jsonDecode(response.body);
       return [PlanetModel.fromMap(data)];
