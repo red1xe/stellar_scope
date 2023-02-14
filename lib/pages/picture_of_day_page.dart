@@ -28,7 +28,7 @@ class Apod extends StatelessWidget {
                     children: const [
                       CircularProgressIndicator(),
                       Text(
-                        " HD Image is Loading...",
+                        " High Resolution Image is Loading",
                         style: TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.bold,
@@ -46,7 +46,6 @@ class Apod extends StatelessWidget {
                     ),
                   ),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(25),
                     child: BackdropFilter(
                       filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
                       child: InkWell(
@@ -105,19 +104,14 @@ class Apod extends StatelessWidget {
                         child: Container(
                           width: width,
                           padding: const EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25),
-                            gradient: const LinearGradient(
+                          decoration: const BoxDecoration(
+                            gradient: LinearGradient(
                               begin: Alignment.topCenter,
                               end: Alignment.bottomCenter,
                               colors: [
                                 Colors.white12,
                                 Colors.black12,
                               ],
-                            ),
-                            border: Border.all(
-                              color: Colors.white30,
-                              width: 2,
                             ),
                           ),
                           child: Row(

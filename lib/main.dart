@@ -1,6 +1,10 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:stellar_scope/pages/search_page.dart';
+import 'package:stellar_scope/services/search_api.dart';
 import 'pages/picture_of_day_page.dart';
 import 'pages/planets_info_page.dart';
 
@@ -41,26 +45,43 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            Text("Drawer"),
-          ],
-        ),
-      ),
-      appBar: AppBar(
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.search),
+      floatingActionButton: SpeedDial(
+        spaceBetweenChildren: 5,
+        animatedIcon: AnimatedIcons.menu_close,
+        backgroundColor: Theme.of(context).colorScheme.secondary,
+        overlayColor: Colors.black,
+        overlayOpacity: 0.3,
+        visible: true,
+        curve: Curves.bounceIn,
+        children: [
+          SpeedDialChild(
+            child: const Icon(Icons.search),
+            backgroundColor: Theme.of(context).colorScheme.secondary,
+            label: 'Search',
+            labelStyle: const TextStyle(fontSize: 18.0),
+            onTap: () async {
+              List<dynamic> apidata = await SearchApi.getAllData();
+              List<String> planetnames =
+                  apidata.map((item) => item['name'].toString()).toList();
+              List<String> planetids =
+                  apidata.map((item) => item['id'].toString()).toList();
+              showSearch(
+                  context: context,
+                  delegate: SearchPlanet(planetnames, planetids));
+            },
           ),
-          IconButton(
-            onPressed: () {
+          SpeedDialChild(
+            child: const Icon(Icons.image),
+            backgroundColor: Theme.of(context).colorScheme.secondary,
+            label: 'Picture of the Day',
+            labelStyle: const TextStyle(fontSize: 18.0),
+            onTap: () {
               Navigator.pushNamed(context, Apod.routeName);
             },
-            icon: const Icon(Icons.image),
           ),
         ],
+      ),
+      appBar: AppBar(
         centerTitle: true,
         title: const Text(
           "Solar System",
