@@ -3,8 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:stellar_scope/pages/blue_marble_page.dart';
-import 'package:stellar_scope/pages/pic_video_lib_page.dart';
+
 import 'package:stellar_scope/pages/search_page.dart';
 import 'package:stellar_scope/services/search_api.dart';
 import 'pages/picture_of_day_page.dart';
@@ -23,8 +22,6 @@ class MyApp extends StatelessWidget {
       routes: {
         InfoPage.routeName: (context) => const InfoPage(),
         Apod.routeName: (context) => const Apod(),
-        BlueMarble.routeName: (context) => const BlueMarble(),
-        NasaLibPage.routeName: (context) => const NasaLibPage(),
       },
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -167,18 +164,7 @@ class MyHomePage extends StatelessWidget {
             backgroundColor: Theme.of(context).colorScheme.secondary,
             label: 'Blue Marble',
             labelStyle: const TextStyle(fontSize: 18.0, color: Colors.black),
-            onTap: () {
-              Navigator.pushNamed(context, BlueMarble.routeName);
-            },
-          ),
-          SpeedDialChild(
-            child: const Icon(Icons.library_books),
-            backgroundColor: Theme.of(context).colorScheme.secondary,
-            label: 'Nasa Image and Video Library',
-            labelStyle: const TextStyle(fontSize: 18.0, color: Colors.black),
-            onTap: () {
-              Navigator.pushNamed(context, NasaLibPage.routeName);
-            },
+            onTap: () {},
           ),
         ],
       ),
