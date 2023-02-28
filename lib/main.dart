@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:stellar_scope/pages/blue_marble_page.dart';
+import 'package:stellar_scope/pages/pic_video_lib_page.dart';
 import 'package:stellar_scope/pages/search_page.dart';
 import 'package:stellar_scope/services/search_api.dart';
 import 'pages/picture_of_day_page.dart';
@@ -21,9 +23,87 @@ class MyApp extends StatelessWidget {
       routes: {
         InfoPage.routeName: (context) => const InfoPage(),
         Apod.routeName: (context) => const Apod(),
+        BlueMarble.routeName: (context) => const BlueMarble(),
+        NasaLibPage.routeName: (context) => const NasaLibPage(),
       },
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        textTheme: TextTheme(
+          displayLarge: GoogleFonts.nunitoSans(
+            fontSize: 96,
+            fontWeight: FontWeight.w300,
+            letterSpacing: -1.5,
+            color: Colors.white,
+          ),
+          displayMedium: GoogleFonts.nunitoSans(
+            fontSize: 60,
+            fontWeight: FontWeight.w300,
+            letterSpacing: -0.5,
+            color: Colors.white,
+          ),
+          displaySmall: GoogleFonts.nunitoSans(
+            fontSize: 48,
+            fontWeight: FontWeight.w400,
+            color: Colors.white,
+          ),
+          headlineMedium: GoogleFonts.nunitoSans(
+            fontSize: 34,
+            fontWeight: FontWeight.w400,
+            letterSpacing: 0.25,
+            color: Colors.white,
+          ),
+          headlineSmall: GoogleFonts.nunitoSans(
+            fontSize: 24,
+            fontWeight: FontWeight.w400,
+            color: Colors.white,
+          ),
+          titleLarge: GoogleFonts.nunitoSans(
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+            letterSpacing: 0.15,
+            color: Colors.white,
+          ),
+          titleMedium: GoogleFonts.nunitoSans(
+            fontSize: 16,
+            fontWeight: FontWeight.w400,
+            letterSpacing: 0.15,
+            color: Colors.white,
+          ),
+          titleSmall: GoogleFonts.nunitoSans(
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+            letterSpacing: 0.1,
+            color: Colors.white,
+          ),
+          bodyLarge: GoogleFonts.nunitoSans(
+            fontSize: 16,
+            fontWeight: FontWeight.w400,
+            letterSpacing: 0.5,
+            color: Colors.white,
+          ),
+          bodyMedium: GoogleFonts.nunitoSans(
+            fontSize: 14,
+            fontWeight: FontWeight.w400,
+            letterSpacing: 0.25,
+            color: Colors.white,
+          ),
+          labelLarge: GoogleFonts.nunitoSans(
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+            letterSpacing: 1.25,
+          ),
+          bodySmall: GoogleFonts.nunitoSans(
+            fontSize: 12,
+            fontWeight: FontWeight.w400,
+            letterSpacing: 0.4,
+          ),
+          labelSmall: GoogleFonts.nunitoSans(
+            fontSize: 10,
+            fontWeight: FontWeight.w400,
+            letterSpacing: 1.5,
+          ),
+        ),
+        useMaterial3: true,
         fontFamily: GoogleFonts.nunitoSans().fontFamily,
         colorScheme: ColorScheme.fromSwatch().copyWith(
             primary: const Color(0xff0b3d91),
@@ -32,6 +112,8 @@ class MyApp extends StatelessWidget {
             error: const Color(0xffffc300),
             outline: const Color(0xff9b59b6)),
         appBarTheme: const AppBarTheme(
+          foregroundColor: Colors.white,
+          centerTitle: true,
           iconTheme: IconThemeData(color: Color(0xff9b59b6)),
           color: Color(0xff0b3d91),
         ),
@@ -48,6 +130,7 @@ class MyHomePage extends StatelessWidget {
       floatingActionButton: SpeedDial(
         spaceBetweenChildren: 5,
         animatedIcon: AnimatedIcons.menu_close,
+        animatedIconTheme: const IconThemeData(color: Colors.black),
         backgroundColor: Theme.of(context).colorScheme.secondary,
         overlayColor: Colors.black,
         overlayOpacity: 0.3,
@@ -58,7 +141,7 @@ class MyHomePage extends StatelessWidget {
             child: const Icon(Icons.search),
             backgroundColor: Theme.of(context).colorScheme.secondary,
             label: 'Search',
-            labelStyle: const TextStyle(fontSize: 18.0),
+            labelStyle: const TextStyle(fontSize: 18.0, color: Colors.black),
             onTap: () async {
               List<dynamic> apidata = await SearchApi.getAllData();
               List<String> planetnames =
@@ -74,15 +157,32 @@ class MyHomePage extends StatelessWidget {
             child: const Icon(Icons.image),
             backgroundColor: Theme.of(context).colorScheme.secondary,
             label: 'Picture of the Day',
-            labelStyle: const TextStyle(fontSize: 18.0),
+            labelStyle: const TextStyle(fontSize: 18.0, color: Colors.black),
             onTap: () {
               Navigator.pushNamed(context, Apod.routeName);
+            },
+          ),
+          SpeedDialChild(
+            child: const Icon(Icons.adjust),
+            backgroundColor: Theme.of(context).colorScheme.secondary,
+            label: 'Blue Marble',
+            labelStyle: const TextStyle(fontSize: 18.0, color: Colors.black),
+            onTap: () {
+              Navigator.pushNamed(context, BlueMarble.routeName);
+            },
+          ),
+          SpeedDialChild(
+            child: const Icon(Icons.library_books),
+            backgroundColor: Theme.of(context).colorScheme.secondary,
+            label: 'Nasa Image and Video Library',
+            labelStyle: const TextStyle(fontSize: 18.0, color: Colors.black),
+            onTap: () {
+              Navigator.pushNamed(context, NasaLibPage.routeName);
             },
           ),
         ],
       ),
       appBar: AppBar(
-        centerTitle: true,
         title: const Text(
           "Solar System",
         ),

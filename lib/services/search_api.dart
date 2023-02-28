@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:stellar_scope/models/planet_model.dart';
 
 class SearchApi {
   static Future<List<dynamic>> getAllData() async {
