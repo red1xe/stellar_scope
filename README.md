@@ -26,7 +26,7 @@ To access the Picture of the Day or Picture of the World features, the user shou
 Contributions to StellarScope are welcome! If you have any ideas or suggestions for improving the app, feel free to open an issue or pull request on the GitHub repository.
 
 ## Credits
-StellarScope was developed by [Your Name Here] using Flutter. The app makes use of the following external libraries and APIs:
+StellarScope was developed by @red1xe using Flutter. The app makes use of the following external libraries and APIs:
 
 * http://api.le-systeme-solaire.net/
 * NASA's Astronomy Picture of the Day API (https://api.nasa.gov/)
